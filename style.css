@@ -1,159 +1,146 @@
 :root {
-    --primary-color: #0f0; /* Vert hacker par défaut */
-    --bg-color: #050505;
-    --font-main: 'Share Tech Mono', monospace;
-    --font-title: 'Press Start 2P', cursive;
+    --primary: #6c5ce7;
+    --accent: #fdcb6e;
+    --dark: #2d3436;
+    --font-game: 'Press Start 2P', cursive;
 }
 
 * { box-sizing: border-box; }
 
 body {
-    margin: 0; padding: 0;
-    background-color: var(--bg-color);
-    color: var(--primary-color);
-    font-family: var(--font-main);
-    overflow: hidden; /* Empêche les scrollbars pendant le tremblement */
-    height: 100vh;
+    margin: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-image 0.5s;
+    font-family: 'Courier New', monospace;
+    background-color: var(--dark);
+    color: white;
+    overflow-x: hidden;
 }
 
-/* --- EFFETS CRT & NOISE --- */
-.scanlines {
+.bg-layer {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none; z-index: 10;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s;
+    opacity: 0.3;
 }
 
-/* --- CONTAINER PRINCIPAL --- */
-.console-container {
-    width: 90%; max-width: 600px;
-    border: 3px solid var(--primary-color);
+.card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 4px solid var(--primary);
     padding: 2rem;
-    background: rgba(0, 10, 0, 0.9);
-    box-shadow: 0 0 20px var(--primary-color);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 10px 10px 0px var(--accent);
+    transition: transform 0.3s;
     position: relative;
-    z-index: 5;
-    transition: transform 1s, border-color 0.1s;
+    z-index: 10;
 }
 
-/* --- TYPOGRAPHIE & GLITCH --- */
 h1 {
-    font-family: var(--font-title);
-    font-size: 1.5rem;
+    font-family: var(--font-game);
+    font-size: 1.2rem;
     text-align: center;
-    margin-bottom: 2rem;
-    text-shadow: 3px 3px 0px rgba(255,0,0,0.5);
+    line-height: 1.5;
+    color: var(--accent);
 }
 
-.system-logs {
-    border-bottom: 1px solid #333;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-}
+.subtitle { font-size: 0.6em; color: white; }
 
-#troll-msg {
-    color: #ff0055;
-    min-height: 1.2em;
+.troll-box {
+    background: #e17055;
+    color: black;
+    padding: 10px;
+    text-align: center;
     font-weight: bold;
-    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: none;
 }
 
-/* --- FORMULAIRE --- */
-.input-group { margin-bottom: 1.5rem; }
+.input-container { margin-bottom: 1.5rem; }
 
 label {
-    display: block; margin-bottom: 0.5rem;
-    font-size: 0.8rem; letter-spacing: 2px;
+    display: block; margin-bottom: 5px;
+    font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
 }
 
-input, textarea, select {
+input, select, textarea {
     width: 100%;
+    padding: 12px;
+    border: 2px solid white;
     background: transparent;
-    border: 1px solid #333;
-    border-left: 3px solid var(--primary-color);
     color: white;
-    font-family: var(--font-main);
-    font-size: 1.1rem;
-    padding: 10px;
+    font-family: inherit;
+    font-size: 1rem;
     outline: none;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus, textarea:focus {
+    border-color: var(--accent);
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px var(--primary-color);
 }
 
-/* --- BOUTON CHAOTIQUE --- */
-#submitBtn {
-    width: 100%; padding: 1.2rem;
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-family: var(--font-title);
-    cursor: pointer;
+.comic-mode { font-family: 'Comic Neue', cursive !important; font-size: 1.2rem; color: yellow; }
+
+.button-zone {
+    height: 60px;
     position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    transition: 0.2s;
 }
 
-#submitBtn:hover {
-    background: var(--primary-color);
-    color: black;
-    animation: violent-shake 0.3s infinite; /* Le bouton tremble de peur */
+#submitBtn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-family: var(--font-game);
+    cursor: pointer;
+    box-shadow: 5px 5px 0px white;
+    transition: all 0.3s ease-out;
+    position: relative; 
+    z-index: 1000; 
 }
 
-/* --- ANIMATIONS WTF --- */
-/* Tremblement violent */
-@keyframes violent-shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-3px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); filter: invert(1); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); filter: hue-rotate(90deg);}
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+#submitBtn.defeated {
+    background-color: #555 !important;
+    box-shadow: none !important;
+    cursor: default;
+    transform: none !important;
 }
 
-.shaking {
-    animation: violent-shake 0.15s;
-    animation-iteration-count: 1;
+body.cage-mode .card {
+    border-color: gold;
+    box-shadow: 0 0 50px gold;
+    animation: shake 0.5s infinite;
+}
+body.cage-mode input { border-color: gold; color: gold; }
+body.cage-mode h1 { color: gold; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-1deg); }
+    75% { transform: translateX(5px) rotate(1deg); }
 }
 
-.blink { animation: blinker 1s linear infinite; }
-@keyframes blinker { 50% { opacity: 0; } }
-
-/* --- MODAL --- */
 .hidden { display: none !important; }
-
-#modal-overlay {
+#modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    z-index: 100;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
     display: flex; justify-content: center; align-items: center;
 }
-
-.modal-content {
-    border: 4px solid white; padding: 2rem;
-    text-align: center; background: black;
-    animation: popIn 0.5s;
+.modal-box {
+    background: white; color: black; padding: 2rem;
+    max-width: 400px; text-align: center;
+    border: 5px solid var(--primary);
 }
-
-.rainbow-text {
+.rainbow {
     background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
     -webkit-background-clip: text; color: transparent;
-    font-family: var(--font-title);
     animation: rainbow 2s linear infinite;
 }
 @keyframes rainbow { to { filter: hue-rotate(360deg); } }
-@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }

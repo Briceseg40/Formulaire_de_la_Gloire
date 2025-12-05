@@ -3,77 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Ultime - Nuit de l'Info</title>
+    <title>Contact Ultime</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Polices Geek / Console -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <!-- Confetti pour la victoire -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <!-- Effets d'écran (Scanlines) -->
-    <div class="scanlines"></div>
-    <div class="noise"></div>
+    <div class="bg-layer"></div>
 
-    <!-- Conteneur principal qui va subir les tortures -->
-    <div id="app-container">
-        <main class="console-container">
-            <header>
-                <h1 class="glitch" data-text="TRANSMISSION_DATA">TRANSMISSION_DATA</h1>
-                
-                <div class="system-logs">
-                    <p>STATUS: <span id="system-status">EN ATTENTE...</span></p>
-                    <!-- Zone de message du Troll -->
-                    <p id="troll-msg" class="blink">_</p>
-                </div>
-            </header>
+    <main class="card">
+        <header>
+            <h1 id="main-title">CONTACTEZ-NOUS...<br><span class="subtitle">SI VOUS LE POUVEZ</span></h1>
+            <div id="u-message" class="troll-box">Prêt pour l'épreuve ?</div>
+        </header>
 
-            <form id="ultimateForm">
-                <div class="input-group">
-                    <label for="name">IDENTIFIANT_AGENT</label>
-                    <input type="text" id="name" required placeholder="_Entrez votre nom" autocomplete="off">
-                </div>
-
-                <div class="input-group">
-                    <label for="email">FREQUENCE_RETOUR (Email)</label>
-                    <input type="email" id="email" required placeholder="_contact@exemple.com" autocomplete="off">
-                </div>
-
-                <div class="input-group">
-                    <label for="subject">OBJET_DE_LA_MISSION</label>
-                    <select id="subject" required>
-                        <option value="" disabled selected>_Sélectionner le motif</option>
-                        <option value="win">Réclamer la victoire</option>
-                        <option value="bug">Signaler une anomalie</option>
-                        <option value="pizza">Demande de Pizza (Urgent)</option>
-                        <option value="other">Autre (Classifié)</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="message">PAYLOAD (Message)</label>
-                    <textarea id="message" required placeholder="_Décryptez votre pensée ici..." rows="4"></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn">
-                    <span class="btn-text">INITIALISER LE LANCEMENT</span>
-                    <div class="progress-bar"></div>
-                </button>
-            </form>
-        </main>
-    </div>
-
-    <!-- La Popup de Victoire (Cachée au début) -->
-    <div id="modal-overlay" class="hidden">
-        <div class="modal-content">
-            <h2 class="rainbow-text">FÉLICITATIONS !</h2>
-            <div class="terminal-output">
-                <p>> PROTOCOLE TERMINÉ.</p>
-                <p>> LE JURY EST IMPRESSIONNÉ.</p>
-                <p>> VOUS AVEZ GAGNÉ (peut-être).</p>
+        <form id="impossibleForm">
+            <div class="input-container">
+                <label>VOTRE BLAZE (Essayez "Cage")</label>
+                <input type="text" id="name" required placeholder="Nom...">
             </div>
-            <button id="closeModal">RELANCER LA MATRICE</button>
+
+            <div class="input-container">
+                <label>COURRIEL ELECTRONIQUE</label>
+                <input type="email" id="email" required placeholder="email@internet.web">
+            </div>
+
+            <div class="input-container">
+                <label>POURQUOI VOUS DÉRANGEZ ?</label>
+                <select id="subject" required>
+                    <option value="" disabled selected>Choisir un destin...</option>
+                    <option value="win">J'ai gagné (Facile)</option>
+                    <option value="complaint">Je veux me plaindre</option>
+                    <option value="love">Déclaration d'amour</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label>VOTRE ROMAN</label>
+                <textarea id="message" rows="4" required placeholder="Écrivez vite avant que ça change..."></textarea>
+            </div>
+
+            <div class="button-zone">
+                <button type="submit" id="submitBtn">ENVOYER CE TRUC</button>
+            </div>
+        </form>
+    </main>
+
+    <div id="modal" class="hidden">
+        <div class="modal-box">
+            <h2 class="rainbow">INCROYABLE !</h2>
+            <p>Tu as réussi à dompter le formulaire.</p>
+            <img src="https://media.giphy.com/media/12A3hKKsewxfbO/giphy.gif" alt="Clap" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+            <button id="closeBtn">FERMER</button>
         </div>
     </div>
 
