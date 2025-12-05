@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Ultime - Nuit de l'Info</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Polices Geek / Console -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Confetti pour la victoire -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Effets d'écran (Scanlines) -->
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+
+    <!-- Conteneur principal qui va subir les tortures -->
+    <div id="app-container">
+        <main class="console-container">
+            <header>
+                <h1 class="glitch" data-text="TRANSMISSION_DATA">TRANSMISSION_DATA</h1>
+                
+                <div class="system-logs">
+                    <p>STATUS: <span id="system-status">EN ATTENTE...</span></p>
+                    <!-- Zone de message du Troll -->
+                    <p id="troll-msg" class="blink">_</p>
+                </div>
+            </header>
+
+            <form id="ultimateForm">
+                <div class="input-group">
+                    <label for="name">IDENTIFIANT_AGENT</label>
+                    <input type="text" id="name" required placeholder="_Entrez votre nom" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">FREQUENCE_RETOUR (Email)</label>
+                    <input type="email" id="email" required placeholder="_contact@exemple.com" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="subject">OBJET_DE_LA_MISSION</label>
+                    <select id="subject" required>
+                        <option value="" disabled selected>_Sélectionner le motif</option>
+                        <option value="win">Réclamer la victoire</option>
+                        <option value="bug">Signaler une anomalie</option>
+                        <option value="pizza">Demande de Pizza (Urgent)</option>
+                        <option value="other">Autre (Classifié)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="message">PAYLOAD (Message)</label>
+                    <textarea id="message" required placeholder="_Décryptez votre pensée ici..." rows="4"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">INITIALISER LE LANCEMENT</span>
+                    <div class="progress-bar"></div>
+                </button>
+            </form>
+        </main>
+    </div>
+
+    <!-- La Popup de Victoire (Cachée au début) -->
+    <div id="modal-overlay" class="hidden">
+        <div class="modal-content">
+            <h2 class="rainbow-text">FÉLICITATIONS !</h2>
+            <div class="terminal-output">
+                <p>> PROTOCOLE TERMINÉ.</p>
+                <p>> LE JURY EST IMPRESSIONNÉ.</p>
+                <p>> VOUS AVEZ GAGNÉ (peut-être).</p>
+            </div>
+            <button id="closeModal">RELANCER LA MATRICE</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
